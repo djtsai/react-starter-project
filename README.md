@@ -10,5 +10,8 @@ Run ```npm run dev```
 ## Building production files
 Run ```npm run build:prod```
 
+## Running node server (after building production files)
+Run ```npm start```
+
 ## Tests
 Run ```npm test```
