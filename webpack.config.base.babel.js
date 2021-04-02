@@ -97,7 +97,7 @@ module.exports = {
     }),
     new StyleLintPlugin({
       configFile: '.stylelintrc',
-      syntax: 'scss'
+      files: ['src/**/*.scss']
     }),
     new MiniCssExtractPlugin({ filename: 'assets/css/[name].[contenthash].css' })
   ],
