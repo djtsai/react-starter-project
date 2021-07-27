@@ -1,7 +1,9 @@
 import path from 'path'
+
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin' // Generates index.html with imported js and css
 import MiniCssExtractPlugin from 'mini-css-extract-plugin' // Used to extract css into different files
+import ESLintPlugin from 'eslint-webpack-plugin'
 import StyleLintPlugin from 'stylelint-webpack-plugin' // Linter for scss files
 
 const buildTime = new Date().getTime()
@@ -31,15 +33,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader', // Runs eslint before trying to compile js
-        options: {
-          globals: ['API_BASE', 'BUILD_TIME']
-        }
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -94,6 +87,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: '',
       template: resolveSrcPath('client/index.ejs')
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx', 'ts', 'tsx']
     }),
     new StyleLintPlugin({
       configFile: '.stylelintrc',
